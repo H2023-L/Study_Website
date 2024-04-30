@@ -31,14 +31,23 @@
             </div>
             <!-- 重复上述代码块以添加更多资源 -->
             <div class="bg-white p-4 shadow rounded-lg">
-                <video controls class="rounded">
-                    <source src="https://h2023-l.github.io/Study_Website/Video/Video_001.mp4" type="video/mp4">
-                    您的浏览器不支持视频标签
-                </video>
+                <video id="video" controls class="rounded w-full"></video>
                 <div class="mt-2">
-                    <a href="https://h2023-l.github.io/Study_Website/Video/Video_001.mp4" class="text-lg text-blue-500 hover:text-blue-600">下载视频</a>
+                    <a href="https://h2023-l.github.io/Study_Website/Video/Video_001" class="text-lg text-blue-500 hover:text-blue-600">下载视频</a>
                 </div>
             </div>
+            <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+            <script>
+                var video = document.getElementById('video');
+                var videoSrc = 'https://h2023-l.github.io/Study_Website/Video/Video_001/Video_001.m3u8';
+                if (Hls.isSupported()) {
+                    var hls = new Hls();
+                    hls.loadSource(videoSrc);
+                    hls.attachMedia(video);
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    video.src = videoSrc;
+                }
+            </script>
         </div>
     </main>
 
