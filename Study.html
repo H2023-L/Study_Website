@@ -26,19 +26,27 @@
                 <img src="https://h2023-l.github.io/Study_Website/Figure/Figure_001.jpg" alt="示例图片" class="rounded">
             </div>
             <div class="bg-white p-4 shadow rounded-lg">
-                <video id="video" controls class="rounded w-full"></video>
+                <img id="video-cover" src="https://h2023-l.github.io/Study_Website/Video/Video_001/Video_001.jpg" alt="视频封面" class="rounded w-full cursor-pointer">
+                <video id="video" controls class="rounded w-full hidden"></video>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
             <script>
                 var video = document.getElementById('video');
+                var cover = document.getElementById('video-cover');
                 var videoSrc = 'https://h2023-l.github.io/Study_Website/Video/Video_001/Video_001.m3u8';
-                if (Hls.isSupported()) {
-                    var hls = new Hls();
-                    hls.loadSource(videoSrc);
-                    hls.attachMedia(video);
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                    video.src = videoSrc;
-                }
+                cover.addEventListener('click', function(){
+                    video.classList.remove('hidden');
+                    cover.classList.add('hidden');
+                    if (Hls.isSupported()) {
+                        var hls = new Hls();
+                        hls.loadSource(videoSrc);
+                        hls.attachMedia(video);
+                        video.play();
+                    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                        video.src = videoSrc;
+                        video.play();
+                    }
+                });                
             </script>
         </div>
     </main>
