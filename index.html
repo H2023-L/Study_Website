@@ -106,11 +106,20 @@
     摄像头权限通常要求 <code>https</code> 或 <code>http://localhost</code> 打开页面（直接双击 <code>file://</code> 可能无法启用摄像头）。
     下面有详细启动方法与浏览器设置指引。
   </div>
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.10.0/dist/es-module-shims.js"></script>
 
+  <script type="importmap-shim">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script> 
   <!-- Three.js (ESM) -->
-  <script type="module">
-    import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
-    import { OrbitControls } from "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+  <script type="module-shim">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
     import { GUI } from "https://unpkg.com/lil-gui@0.19.2/dist/lil-gui.esm.min.js";
 
     // MediaPipe Hands (UMD，全局 Hands/Camera)
